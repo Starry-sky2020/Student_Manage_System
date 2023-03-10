@@ -1,6 +1,6 @@
 # Student_Manage_System
 
-##JAVASE 学生管理系统
+## JAVASE 学生管理系统
 分为用户和管理员两个角色
 
 环境：  
