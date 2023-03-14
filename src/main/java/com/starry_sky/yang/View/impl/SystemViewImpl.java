@@ -8,7 +8,9 @@ import com.starry_sky.yang.controller.impl.ManageUserMessageControllerImpl;
 import com.starry_sky.yang.pojo.Manager;
 import com.starry_sky.yang.pojo.Student;
 import com.starry_sky.yang.pojo.User;
+import com.starry_sky.yang.utils.Tools;
 
+import javax.tools.Tool;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -20,13 +22,29 @@ public class SystemViewImpl implements SystemView {
     private ManageStudentController manageStudentController = new ManageStudentControllerImpl();
     private ManageUserMessageControllerImpl manageUserMessageController = new ManageUserMessageControllerImpl();
     public Integer MainUI(){
-        System.out.println("***************使用学生管理系统1.0V***************");
-        System.out.println("1.登录系统");
-        System.out.println("2.注册信息");
-        System.out.println("3.退出系统");
-        System.out.println("请输入您的选择：");
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
+        int choice;
+        boolean flg1 = true;
+
+        while (true){
+            System.out.println("***************使用学生管理系统1.0V***************");
+            System.out.println("1.登录系统");
+            System.out.println("2.注册信息");
+            System.out.println("3.退出系统");
+            System.out.println("请输入您的选择：");
+            Scanner scanner = new Scanner(System.in);
+            String str = scanner.nextLine();
+
+            if (!Tools.checkInt(str))
+                System.out.println("请输入数字");
+            else if (str.compareTo("1") < 0 || str.compareTo("3") > 0){
+                System.out.println("请输入1-3的数字");
+                choice = Integer.parseInt(str);
+            } else {
+                choice = Integer.valueOf(str);
+                break;
+            }
+
+        }
 
         return choice;
     }
@@ -108,7 +126,8 @@ public class SystemViewImpl implements SystemView {
         while(true){
             if (choice == 1){
                 List<Student> studentList = manageStudentController.selectAllStudent();
-                System.out.println(studentList);
+                for (Student student : studentList)
+                    System.out.println(student);
             } else if (choice == 2) {
                 System.out.println("请输入要查询学生的学号");
                 Scanner scanner = new Scanner(System.in);

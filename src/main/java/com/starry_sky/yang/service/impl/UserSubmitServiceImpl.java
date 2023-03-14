@@ -7,6 +7,7 @@ import com.starry_sky.yang.service.UserSubmitService;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class UserSubmitServiceImpl implements UserSubmitService {
 
@@ -32,7 +33,7 @@ public class UserSubmitServiceImpl implements UserSubmitService {
         InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream("C:\\Users\\Starry Sky\\Desktop\\User.txt"),"UTF-8");
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("C:\\Users\\Starry Sky\\Desktop\\User.txt",true));
-        bufferedWriter.write(user.getId()+" "+user.getUserName()+" "+user.getUserPassword()+" "+user.isSex()+" "+user.getAge()+" "+user.getAddress());
+        bufferedWriter.write(UUID.randomUUID() +" "+user.getUserName()+" "+user.getUserPassword()+" "+user.isSex()+" "+user.getAge()+" "+user.getAddress());
         bufferedReader.close();
         bufferedWriter.close();
     }

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import com.starry_sky.yang.controller.impl.ManageStudentControllerImpl;
 import com.starry_sky.yang.controller.impl.CheckPersonControllerImpl;
 import com.starry_sky.yang.pojo.Student;
+import com.starry_sky.yang.utils.Tools;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -49,7 +50,7 @@ public class AppTest
     }
 
     @Test
-    public void testUserFunction() throws IOException {
-
+    public void testTool(){
+        Tools.checkInt("A");
     }
 }
