@@ -1,5 +1,6 @@
 package com.starry_sky.yang.service;
 
+import com.starry_sky.yang.pojo.ImportResult;
 import com.starry_sky.yang.pojo.Student;
 
 import java.io.IOException;
@@ -34,7 +35,7 @@ public interface ManageStudentService {
     /**
      * 导入学生信息
      */
-    void ImportStudentMessage(String path) throws IOException;
+    ImportResult ImportStudentMessage(String path) throws IOException;
 
     /**
      *  插入学生信息

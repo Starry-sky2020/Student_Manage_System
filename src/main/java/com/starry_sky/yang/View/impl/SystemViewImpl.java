@@ -5,6 +5,7 @@ import com.starry_sky.yang.controller.ManageStudentController;
 import com.starry_sky.yang.controller.ManageUserMessageController;
 import com.starry_sky.yang.controller.impl.ManageStudentControllerImpl;
 import com.starry_sky.yang.controller.impl.ManageUserMessageControllerImpl;
+import com.starry_sky.yang.pojo.ImportResult;
 import com.starry_sky.yang.pojo.Manager;
 import com.starry_sky.yang.pojo.Student;
 import com.starry_sky.yang.pojo.User;
@@ -167,10 +168,11 @@ public class SystemViewImpl implements SystemView {
                 System.out.println(studentList);
             } else if (choice == 6) {
                 System.out.println("导入数据文件的路径:");
-                Scanner scanner = new Scanner(System.in);
-                String path = scanner.nextLine();
-
-                manageStudentController.ImportStudentMessage(path);
+//                Scanner scanner = new Scanner(System.in);
+//                String path = scanner.nextLine();
+                //测试 写死路径
+                ImportResult importResult = manageStudentController.ImportStudentMessage("C:\\Users\\Starry Sky\\Desktop\\test.txt");
+                System.out.println(importResult);
             } else if (choice == 7) {
                 System.out.println("请输入要插入的学生信息:");
                 Scanner scanner = new Scanner(System.in);

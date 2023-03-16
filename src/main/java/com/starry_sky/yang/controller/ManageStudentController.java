@@ -1,10 +1,9 @@
 package com.starry_sky.yang.controller;
 
+import com.starry_sky.yang.pojo.ImportResult;
 import com.starry_sky.yang.pojo.Student;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public interface ManageStudentController {
@@ -36,7 +35,7 @@ public interface ManageStudentController {
     /**
      * 导入学生信息
      */
-    void ImportStudentMessage(String path) throws IOException;
+    ImportResult ImportStudentMessage(String path) throws IOException;
 
     /**
      *  插入学生信息

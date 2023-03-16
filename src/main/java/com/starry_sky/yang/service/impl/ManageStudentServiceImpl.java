@@ -1,17 +1,24 @@
 package com.starry_sky.yang.service.impl;
 
 import com.starry_sky.yang.File.impl.ReadFileImpl;
+import com.starry_sky.yang.pojo.CheckStudentFormatResult;
+import com.starry_sky.yang.pojo.ImportResult;
 import com.starry_sky.yang.pojo.Student;
 import com.starry_sky.yang.service.ManageStudentService;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class ManageStudentServiceImpl implements ManageStudentService {
     private ReadFileImpl readFile = new ReadFileImpl();
+    private List<Student> studentList;
+    public ManageStudentServiceImpl() {
+        try {
+            studentList = readFile.selectStudentMessage();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * 查询所有学生
@@ -20,7 +27,6 @@ public class ManageStudentServiceImpl implements ManageStudentService {
      */
     @Override
     public List<Student> selectAllStudent() throws IOException {
-        List<Student> studentList = readFile.selectStudentMessage();
         return studentList;
     }
 
@@ -32,8 +38,6 @@ public class ManageStudentServiceImpl implements ManageStudentService {
      */
     @Override
     public Student selectStudetById(String id) throws IOException {
-        List<Student> studentList = selectAllStudent();
-
         for (int i = 0; i < studentList.size(); i++){
             if (studentList.get(i).getId().equals(id)){
                 return studentList.get(i);
@@ -80,9 +84,6 @@ public class ManageStudentServiceImpl implements ManageStudentService {
      */
     @Override
     public List<Student> SortByStudetId() throws IOException {
-
-        List<Student> studentList = selectAllStudent();
-
         for (int i = 0; i < studentList.size(); i++){
             for (int j = i + 1; j < studentList.size();j++){
                 if (studentList.get(i).getId().compareTo(studentList.get(j).getId()) > 0 ){
@@ -107,29 +108,57 @@ public class ManageStudentServiceImpl implements ManageStudentService {
      * @throws IOException
      */
     @Override
-    public void ImportStudentMessage(String path) throws IOException {
-        List<Student> studentList = new ArrayList<>();
+    public ImportResult ImportStudentMessage(String path) throws IOException {
 
-        InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(path), "UTF-8");
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("C:\\Users\\Starry Sky\\Desktop\\student.txt",true));
+        ImportResult importResult = new ImportResult();
 
-        String message;
-        int lineNum = 0;
+        //文件名为空
+        if (path == null || path.equals("")){
+            importResult.setResult(false);
+            importResult.setCode(ImportResult.CODE_1);
+            importResult.setMessage("文件名为空");
+            return importResult;
+        }
 
-        while ((message = bufferedReader.readLine()) != null){
-            Student student = new Student();
+        //文件不存在
+        if (!new File(path).exists()){
+            importResult.setResult(false);
+            importResult.setCode(ImportResult.CODE_2);
+            importResult.setMessage("文件名不存在");
+            return importResult;
+        }
 
-            if (lineNum == 0){
-                lineNum++;
+        //TODO 文件内容格式检查
+        CheckStudentFormatResult checkStudentFormatResult = readFile.checkStudentFormat(path);
+        if (checkStudentFormatResult.getFailCode().size() != 0){
+            importResult.setResult(false);
+            importResult.setCode(ImportResult.CODE_3);
+            importResult.setMessage("文件内容格式不正确");
+            return importResult;
+        }
+
+        List<Student> data = readFile.selectStudentMessage(path);
+
+        Iterator<Student> iterator = data.iterator();
+        while (iterator.hasNext()){
+            Student student = iterator.next();
+            /**
+             * selectStudetById查询系统文件内的学生
+             * 检验导入的学生是否已经存在在系统文件
+             */
+            if (selectStudetById(student.getId()) == null){
+                data.add(student);
+                importResult.getSuccessData().add(student);
             } else {
-                bufferedWriter.write(message);
-                bufferedWriter.newLine();
+                importResult.getExistData().add(student);
             }
         }
 
-        bufferedWriter.close();
-        bufferedReader.close();
+        importResult.setResult(true);
+        importResult.setCode(0);
+        importResult.setMessage("导入成功");
+
+        return importResult;
 
     }
 

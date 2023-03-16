@@ -2,6 +2,7 @@ package com.starry_sky.yang.controller.impl;
 
 import com.starry_sky.yang.File.impl.ReadFileImpl;
 import com.starry_sky.yang.controller.ManageStudentController;
+import com.starry_sky.yang.pojo.ImportResult;
 import com.starry_sky.yang.pojo.Student;
 import com.starry_sky.yang.service.impl.ManageStudentServiceImpl;
 
@@ -67,9 +68,8 @@ public class ManageStudentControllerImpl implements ManageStudentController {
      * @throws IOException
      */
     @Override
-    public void ImportStudentMessage(String path) throws IOException {
-        manageStudentService.ImportStudentMessage(path);
-
+    public ImportResult ImportStudentMessage(String path) throws IOException {
+        return manageStudentService.ImportStudentMessage(path);
     }
 
     /**
