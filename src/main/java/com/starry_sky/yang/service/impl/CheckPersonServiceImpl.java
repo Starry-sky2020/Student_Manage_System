@@ -1,6 +1,6 @@
 package com.starry_sky.yang.service.impl;
 
-import com.starry_sky.yang.File.impl.ReadFileImpl;
+import com.starry_sky.yang.File.ReadFile;
 import com.starry_sky.yang.View.impl.SystemViewImpl;
 import com.starry_sky.yang.pojo.Manager;
 import com.starry_sky.yang.pojo.User;
@@ -13,7 +13,7 @@ import java.util.Map;
 public class CheckPersonServiceImpl implements CheckPersonService {
 
     private SystemViewImpl systemViewImpl = new SystemViewImpl();
-    private ReadFileImpl readFile = new ReadFileImpl();
+    private ReadFile readFile = new ReadFile();
 
     /**
      * 用户登录信息验证

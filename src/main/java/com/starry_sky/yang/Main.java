@@ -1,11 +1,11 @@
 package com.starry_sky.yang;
 
-import com.starry_sky.yang.controller.impl.IntoSystemControllerImpl;
+import com.starry_sky.yang.controller.IntoSystemControllerImpl;
 
 import java.io.IOException;
 
 
-public class App 
+public class Main
 {
     public static void main( String[] args ) throws IOException {
 

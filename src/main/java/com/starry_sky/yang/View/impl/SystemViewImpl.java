@@ -1,17 +1,14 @@
 package com.starry_sky.yang.View.impl;
 
 import com.starry_sky.yang.View.SystemView;
-import com.starry_sky.yang.controller.ManageStudentController;
-import com.starry_sky.yang.controller.ManageUserMessageController;
-import com.starry_sky.yang.controller.impl.ManageStudentControllerImpl;
-import com.starry_sky.yang.controller.impl.ManageUserMessageControllerImpl;
+import com.starry_sky.yang.controller.ManageStudentControllerImpl;
+import com.starry_sky.yang.controller.ManageUserMessageControllerImpl;
 import com.starry_sky.yang.pojo.ImportResult;
 import com.starry_sky.yang.pojo.Manager;
 import com.starry_sky.yang.pojo.Student;
 import com.starry_sky.yang.pojo.User;
 import com.starry_sky.yang.utils.Tools;
 
-import javax.tools.Tool;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +17,7 @@ import java.util.Scanner;
 
 public class SystemViewImpl implements SystemView {
 
-    private ManageStudentController manageStudentController = new ManageStudentControllerImpl();
+    private ManageStudentControllerImpl manageStudentController = new ManageStudentControllerImpl();
     private ManageUserMessageControllerImpl manageUserMessageController = new ManageUserMessageControllerImpl();
     public Integer MainUI(){
         int choice;

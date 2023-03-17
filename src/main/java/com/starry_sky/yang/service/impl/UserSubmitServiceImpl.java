@@ -1,6 +1,6 @@
 package com.starry_sky.yang.service.impl;
 
-import com.starry_sky.yang.File.impl.ReadFileImpl;
+import com.starry_sky.yang.File.ReadFile;
 import com.starry_sky.yang.pojo.User;
 import com.starry_sky.yang.service.UserSubmitService;
 
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class UserSubmitServiceImpl implements UserSubmitService {
 
-    private ReadFileImpl readFile = new ReadFileImpl();
+    private ReadFile readFile = new ReadFile();
     /**
      * 用户注册服务
      * @param map

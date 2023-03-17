@@ -1,6 +1,6 @@
 package com.starry_sky.yang.service.impl;
 
-import com.starry_sky.yang.File.impl.ReadFileImpl;
+import com.starry_sky.yang.File.ReadFile;
 import com.starry_sky.yang.pojo.CheckStudentFormatResult;
 import com.starry_sky.yang.pojo.ImportResult;
 import com.starry_sky.yang.pojo.Student;
@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.*;
 
 public class ManageStudentServiceImpl implements ManageStudentService {
-    private ReadFileImpl readFile = new ReadFileImpl();
+    private ReadFile readFile = new ReadFile();
     private List<Student> studentList;
     public ManageStudentServiceImpl() {
         try {

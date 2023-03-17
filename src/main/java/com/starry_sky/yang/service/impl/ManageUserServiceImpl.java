@@ -1,8 +1,6 @@
 package com.starry_sky.yang.service.impl;
 
 import com.starry_sky.yang.File.ReadFile;
-import com.starry_sky.yang.File.impl.ReadFileImpl;
-import com.starry_sky.yang.View.impl.SystemViewImpl;
 import com.starry_sky.yang.pojo.Manager;
 import com.starry_sky.yang.pojo.User;
 import com.starry_sky.yang.service.ManageUserService;
@@ -15,7 +13,7 @@ import java.util.List;
 public class ManageUserServiceImpl implements ManageUserService {
 
 //    private SystemViewImpl systemView = new SystemViewImpl();
-    private ReadFile readFile = new ReadFileImpl();
+    private ReadFile readFile = new ReadFile();
 
     /**
      * 管理员管理学生信息
