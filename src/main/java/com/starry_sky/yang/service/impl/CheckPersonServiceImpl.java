@@ -12,21 +12,16 @@ import java.util.Map;
 
 public class CheckPersonServiceImpl implements CheckPersonService {
 
-    private SystemViewImpl systemViewImpl = new SystemViewImpl();
     private ReadFile readFile = new ReadFile();
-
     /**
      * 用户登录信息验证
      * @throws IOException
      */
-    public Boolean UserLoginView() throws IOException {
-        Map<String, String> userLoginMap = systemViewImpl.UserLogin();
+    public Boolean UserLoginView(Map<String,String> map) throws IOException {
         List<User> userList = readFile.selectUserMessage();
         for (int i = 0; i < userList.size(); i++){
-
-            if (userList.get(i).getUserName().equals(userLoginMap.get("username"))){
-                if (userList.get(i).getUserPassword().equals(userLoginMap.get("password"))){
-
+            if (userList.get(i).getUserName().equals(map.get("username"))){
+                if (userList.get(i).getUserPassword().equals(map.get("password"))){
                     System.out.println("登录成功");
                     return true;
                 }
@@ -39,14 +34,12 @@ public class CheckPersonServiceImpl implements CheckPersonService {
      * 管理员登录信息验证
      * @throws IOException
      */
-    public Boolean ManagerLoginView() throws IOException {
-        Map<String, String> managerLogin = systemViewImpl.ManagerLogin();
+    public Boolean ManagerLoginView(Map<String,String> map) throws IOException {
         List<Manager> managerList = readFile.selectManagerMessage();
         for (int i = 0; i < managerList.size(); i++){
 
-            if (managerList.get(i).getManageName().equals(managerLogin.get("managername"))){
-                if (managerList.get(i).getManagePassword().equals(managerLogin.get("password"))){
-
+            if (managerList.get(i).getManageName().equals(map.get("managername"))){
+                if (managerList.get(i).getManagePassword().equals(map.get("password"))){
                     System.out.println("管理员登录成功");
                     return true;
                 }

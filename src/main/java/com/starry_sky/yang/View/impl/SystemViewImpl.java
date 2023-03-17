@@ -1,8 +1,10 @@
 package com.starry_sky.yang.View.impl;
 
 import com.starry_sky.yang.View.SystemView;
+import com.starry_sky.yang.controller.CheckPersonControllerImpl;
 import com.starry_sky.yang.controller.ManageStudentControllerImpl;
 import com.starry_sky.yang.controller.ManageUserMessageControllerImpl;
+import com.starry_sky.yang.controller.UserSubmitControllerImpl;
 import com.starry_sky.yang.pojo.ImportResult;
 import com.starry_sky.yang.pojo.Manager;
 import com.starry_sky.yang.pojo.Student;
@@ -19,9 +21,11 @@ public class SystemViewImpl implements SystemView {
 
     private ManageStudentControllerImpl manageStudentController = new ManageStudentControllerImpl();
     private ManageUserMessageControllerImpl manageUserMessageController = new ManageUserMessageControllerImpl();
+    private CheckPersonControllerImpl personController = new CheckPersonControllerImpl();
+    private UserSubmitControllerImpl submitController = new UserSubmitControllerImpl();
+
     public Integer MainUI(){
         int choice;
-        boolean flg1 = true;
 
         while (true){
             System.out.println("***************使用学生管理系统1.0V***************");
@@ -49,11 +53,28 @@ public class SystemViewImpl implements SystemView {
 
     @Override
     public Integer LoginUI() {
-        System.out.println("***************使用学生管理系统1.0V***************");
-        System.out.println("1.管理员账号登录");
-        System.out.println("2.用户账号登录");
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        String str;
+        int choice;
+
+        while (true){
+            System.out.println("***************使用学生管理系统1.0V***************");
+            System.out.println("1.管理员账号登录");
+            System.out.println("2.用户账号登录");
+
+            str = scanner.nextLine();
+            if (!Tools.checkInt(str))
+                System.out.println("请输入数字");
+            else if (str.compareTo("1") < 0 || str.compareTo("2") > 0){
+                System.out.println("请输入1-2的数字");
+                choice = Integer.parseInt(str);
+            } else {
+                choice = Integer.valueOf(str);
+                break;
+            }
+        }
+
+        return choice;
     }
 
     /**
@@ -62,6 +83,7 @@ public class SystemViewImpl implements SystemView {
      */
     @Override
     public Map<String,String> UserLogin() {
+
         System.out.println("***************使用学生管理系统1.0V***************");
         System.out.println("请输入用户名：");
         Scanner scanner = new Scanner(System.in);
@@ -74,6 +96,7 @@ public class SystemViewImpl implements SystemView {
         userMessageMap.put("password",password);
 
         return userMessageMap;
+
     }
 
     /**
@@ -104,19 +127,35 @@ public class SystemViewImpl implements SystemView {
     @Override
     public Integer ManageStudentSystemView() {
 
-        System.out.println("***************使用学生管理系统1.0V***************");
-        System.out.println("1.查看所有学生信息");
-        System.out.println("2.查询学生信息");
-        System.out.println("3.修改学生信息");
-        System.out.println("4.根据学号删除学生信息");
-        System.out.println("5.按照学号进行学生信息排序");
-        System.out.println("6.导入学生信息");
-        System.out.println("7.插入学生信息");
-        System.out.println("8.退出系统");
-        System.out.println("***************使用学生管理系统1.0V***************");
-        Scanner scanner = new Scanner(System.in);
+        String str;
+        int choice;
 
-        return scanner.nextInt();
+        while (true){
+            System.out.println("***************使用学生管理系统1.0V***************");
+            System.out.println("1.查看所有学生信息");
+            System.out.println("2.查询学生信息");
+            System.out.println("3.修改学生信息");
+            System.out.println("4.根据学号删除学生信息");
+            System.out.println("5.按照学号进行学生信息排序");
+            System.out.println("6.导入学生信息");
+            System.out.println("7.插入学生信息");
+            System.out.println("8.退出系统");
+            System.out.println("***************使用学生管理系统1.0V***************");
+
+            Scanner scanner = new Scanner(System.in);
+            str = scanner.nextLine();
+            if (!Tools.checkInt(str))
+                System.out.println("请输入数字");
+            else if (str.compareTo("1") < 0 || str.compareTo("8") > 0){
+                System.out.println("请输入1-8的数字");
+                choice = Integer.parseInt(str);
+            } else {
+                choice = Integer.valueOf(str);
+                break;
+            }
+        }
+
+        return choice;
     }
 
     @Override
@@ -224,45 +263,87 @@ public class SystemViewImpl implements SystemView {
 
     @Override
     public Integer ManageUserView() {
+        String str;
+        int choice;
 
-        System.out.println("***************学生信息管理系统管理员特权界面1.0V***************");
-        System.out.println("1.管理学生信息");
-        System.out.println("2.管理用户信息");
-        System.out.println("3.创建管理账户");
-        System.out.println("4.退出系统");
+        while (true){
+            System.out.println("***************学生信息管理系统管理员特权界面1.0V***************");
+            System.out.println("1.管理学生信息");
+            System.out.println("2.管理用户信息");
+            System.out.println("3.创建管理账户");
+            System.out.println("4.退出系统");
 
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+            Scanner scanner = new Scanner(System.in);
+            str = scanner.nextLine();
+
+            if (!Tools.checkInt(str))
+                System.out.println("请输入数字");
+            else if (str.compareTo("1") < 0 || str.compareTo("4") > 0){
+                System.out.println("请输入1-4的数字");
+                choice = Integer.parseInt(str);
+            } else {
+                choice = Integer.valueOf(str);
+                break;
+            }
+
+        }
+
+        return choice;
     }
 
     @Override
     public Integer ManageUserMessageView() {
-        System.out.println("***************学生信息管理系统管理员特权界面1.0V***************");
-        System.out.println("1.查询所有用户");
-        System.out.println("2.删除用户");
-        System.out.println("3.返回上一层");
 
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        String str;
+        int choice;
+        while (true){
+            System.out.println("***************学生信息管理系统管理员特权界面1.0V***************");
+            System.out.println("1.查询所有用户");
+            System.out.println("2.删除用户");
+            System.out.println("3.返回上一层");
+            Scanner scanner = new Scanner(System.in);
+
+            str = scanner.nextLine();
+            if (!Tools.checkInt(str))
+                System.out.println("请输入数字");
+            else if (str.compareTo("1") < 0 || str.compareTo("3") > 0){
+                System.out.println("请输入1-3的数字");
+                choice = Integer.parseInt(str);
+            } else {
+                choice = Integer.valueOf(str);
+                break;
+            }
+        }
+
+        return choice;
     }
 
     @Override
     public void ManageUserMessage(Integer choice) throws IOException {
+        String str;
+        Scanner scanner = new Scanner(System.in);
+
         while(true){
             if (choice == 1){
                 List<User> userList = manageUserMessageController.selectAllUser();
                 System.out.println(userList);
             } else if (choice == 2) {
                 System.out.println("请输入删除用户Id");
-                Scanner scanner = new Scanner(System.in);
                 String id = scanner.nextLine();
                 manageUserMessageController.deleteUserById(id);
             } else if (choice == 3) {
                 ManageUserView();
             }
-            System.out.println("请输入选择：");
-            Scanner scanner = new Scanner(System.in);
-            choice = scanner.nextInt();
+            str = scanner.nextLine();
+            if (!Tools.checkInt(str))
+                System.out.println("请输入数字");
+            else if (str.compareTo("1") < 0 || str.compareTo("3") > 0){
+                System.out.println("请输入1-3的数字");
+                choice = Integer.parseInt(str);
+            } else {
+                choice = Integer.valueOf(str);
+                break;
+            }
         }
     }
 

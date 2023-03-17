@@ -1,6 +1,7 @@
 package com.starry_sky.yang.service;
 
 import com.starry_sky.yang.pojo.Manager;
+import com.starry_sky.yang.pojo.SubmitResult;
 import com.starry_sky.yang.pojo.User;
 
 import java.io.IOException;
@@ -30,5 +31,5 @@ public interface ManageUserService {
      * 创建管理账号
      * @param manager
      */
-    void createManger(Manager manager) throws IOException;
+    SubmitResult createManger(Manager manager) throws IOException;
 }
