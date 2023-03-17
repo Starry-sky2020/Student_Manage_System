@@ -1,7 +1,6 @@
 package com.starry_sky.yang.View.impl;
 
 import com.starry_sky.yang.controller.CheckPersonControllerImpl;
-import com.starry_sky.yang.controller.ManageStudentControllerImpl;
 import com.starry_sky.yang.controller.ManageUserMessageControllerImpl;
 import com.starry_sky.yang.controller.UserSubmitControllerImpl;
 import com.starry_sky.yang.pojo.Manager;
