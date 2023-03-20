@@ -1,7 +1,6 @@
 package com.starry_sky.yang.service.impl;
 
 import com.starry_sky.yang.File.ReadFile;
-import com.starry_sky.yang.View.impl.SystemViewImpl;
 import com.starry_sky.yang.pojo.Manager;
 import com.starry_sky.yang.pojo.User;
 import com.starry_sky.yang.service.CheckPersonService;

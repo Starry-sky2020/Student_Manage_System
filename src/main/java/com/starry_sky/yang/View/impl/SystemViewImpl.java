@@ -207,7 +207,7 @@ public class SystemViewImpl implements SystemView {
 //                Scanner scanner = new Scanner(System.in);
 //                String path = scanner.nextLine();
                 //测试 写死路径
-                ImportResult importResult = manageStudentController.ImportStudentMessage("C:\\Users\\Starry Sky\\Desktop\\test.txt");
+                ImportResult importResult = manageStudentController.ImportStudentMessage("src/main/resources/test.txt");
                 System.out.println(importResult);
             } else if (choice == 7) {
                 System.out.println("请输入要插入的学生信息:");

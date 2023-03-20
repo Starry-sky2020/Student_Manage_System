@@ -20,7 +20,7 @@ public class ReadFile {
 
         List<Student> studentList = new ArrayList<>();
 
-        InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream("C:\\Users\\Starry Sky\\Desktop\\student.txt"), "UTF-8");
+        InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream("src/main/resources/student.txt"), "UTF-8");
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
         String message;
@@ -59,7 +59,7 @@ public class ReadFile {
 
     public List<Manager> selectManagerMessage() throws IOException {
 
-        InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream("C:\\Users\\Starry Sky\\Desktop\\Manager.txt"), "UTF-8");
+        InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream("src/main/resources/Manager.txt"), "UTF-8");
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
         String message = null;
@@ -96,7 +96,7 @@ public class ReadFile {
 
     public List<User> selectUserMessage() throws IOException {
 
-        InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream("C:\\Users\\Starry Sky\\Desktop\\User.txt"), "UTF-8");
+        InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream("src/main/resources/User.txt"), "UTF-8");
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
         String message = null;
