@@ -191,19 +191,22 @@ public class ReadFile {
                         result.getFailCode().add(CheckStudentFormatResult.CODE_1);
                         continue;
                     }
-                    if(Tools.checkInt(data[0])){
-                        result.getFailData().add(line);
-                        result.getFailCode().add(CheckStudentFormatResult.CODE_2);
-                        continue;
-                    }
-                    if(Tools.checkInt(data[2])){
-                        result.getFailData().add(line);
-                        result.getFailCode().add(CheckStudentFormatResult.CODE_3);
-                        continue;
-                    }
+//                    if(Tools.checkInt(data[0])){
+//                        System.out.println("hhhh");
+//                        result.getFailData().add(line);
+//                        result.getFailCode().add(CheckStudentFormatResult.CODE_2);
+//                        continue;
+//                    }
+//                    if(Tools.checkInt(data[2])){
+//                        System.out.println("jjjj");
+//                        result.getFailData().add(line);
+//                        result.getFailCode().add(CheckStudentFormatResult.CODE_3);
+//                        continue;
+//                    }
 
-                    // TODO 检查重复的数据
+                    //检查重复的数据
                     if (checkRepeatData(selectStudentMessage(), data[0])){
+                        System.out.println("hhhhh");
                         result.getExistData().add(line);
                         result.getFailCode().add(CheckStudentFormatResult.CODE_4);
                         continue;

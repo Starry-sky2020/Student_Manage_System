@@ -128,7 +128,7 @@ public class ManageStudentServiceImpl implements ManageStudentService {
             return importResult;
         }
 
-        //TODO 文件内容格式检查
+        //文件内容格式检查
         CheckStudentFormatResult checkStudentFormatResult = readFile.checkStudentFormat(path);
         if (checkStudentFormatResult.getFailCode().size() != 0){
             importResult.setResult(false);
@@ -139,20 +139,31 @@ public class ManageStudentServiceImpl implements ManageStudentService {
 
         List<Student> data = readFile.selectStudentMessage(path);
 
-        Iterator<Student> iterator = data.iterator();
-        while (iterator.hasNext()){
-            Student student = iterator.next();
+        for (int i = 0; i < data.size(); i++){
             /**
              * selectStudetById查询系统文件内的学生
              * 检验导入的学生是否已经存在在系统文件
              */
-            if (selectStudetById(student.getId()) == null){
-                data.add(student);
-                importResult.getSuccessData().add(student);
+            if (selectStudetById(data.get(i).getId()) == null){
+                importResult.getSuccessData().add(data.get(i));
             } else {
-                importResult.getExistData().add(student);
+                importResult.getExistData().add(data.get(i));
             }
         }
+
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/student.txt",true));
+        for (Student student : data){
+
+            String sex;
+            if (student.isSex()) sex = "男";
+            else sex = "女";
+            String message = student.getId()+" "+student.getName()+" "+String.valueOf(student.getAge())+" "
+                    +sex+" "+student.getSchool()+" "+student.getAddress();
+
+            bufferedWriter.write(message);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
 
         importResult.setResult(true);
         importResult.setCode(0);
@@ -171,7 +182,7 @@ public class ManageStudentServiceImpl implements ManageStudentService {
      */
     @Override
     public void InsertStudentMessage(Student student) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("C:\\Users\\Starry Sky\\Desktop\\student.txt",true));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/student.txt",true));
         String sex;
         if (student.isSex()) sex = "男";
         else sex = "女";
@@ -203,7 +214,7 @@ public class ManageStudentServiceImpl implements ManageStudentService {
         studentList.remove(re_stu);
 
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("C:\\Users\\Starry Sky\\Desktop\\student.txt",false));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/student.txt",false));
         bufferedWriter.write("学号 姓名 年龄 性别 学校 地址");
         bufferedWriter.newLine();
         for (Student student : studentList){

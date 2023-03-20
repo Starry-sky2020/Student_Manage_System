@@ -40,7 +40,7 @@ public class AppTest
     @Test
     public void testimportStudentMeassage() throws IOException {
         ManageStudentControllerImpl manageStudentController = new ManageStudentControllerImpl();
-        manageStudentController.ImportStudentMessage("C:\\Users\\Starry Sky\\Desktop\\test.txt");
+        manageStudentController.ImportStudentMessage("src/main/resources/test.txt");
     }
 
     /**
